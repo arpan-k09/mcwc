@@ -1,0 +1,35 @@
+package com.example.p7;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.widget.RatingBar;
+
+public class MainActivity extends AppCompatActivity {
+    RatingBar r1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        r1=(RatingBar)findViewById(R.id.r1);
+        r1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener()
+        {
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float v, boolean b)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("User rating is"+v);
+        builder.setTitle("rating");
+        builder.setNegativeButton("OK", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                dialogInterface.cancel();}});
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }});
+    }
+}
